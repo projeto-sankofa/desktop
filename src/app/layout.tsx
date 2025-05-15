@@ -1,9 +1,10 @@
+import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
   subsets: ["latin"],
 });
 
@@ -18,11 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
-      <body
-        className={`${dmSans.variable} antialiased`}
-      >
-        {children}
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body className={cn("antialiased", outfit.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
