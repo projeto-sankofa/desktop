@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LineChartComponent } from "./components/grafico-linha"
+import { PieChartComponent } from "./components/pie-charts"
 
 export default function Dashboard() {
   return (
@@ -9,7 +10,7 @@ export default function Dashboard() {
         <div className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total de Relatórios</CardTitle>
+              <CardTitle className="text-md font-medium">Total de Analíses</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">128</div>
@@ -18,7 +19,7 @@ export default function Dashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Análises Realizadas</CardTitle>
+              <CardTitle className="text-md font-medium">Casos de Racismo</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">342</div>
@@ -27,15 +28,16 @@ export default function Dashboard() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Taxa de Conclusão</CardTitle>
+              <CardTitle className="text-md font-medium">Precisão I.A</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">92%</div>
-              <p className="text-xs text-muted-foreground">+2% em relação ao mês anterior</p>
+              <p className="text-xs text-muted-foreground">Testado e comprovado</p>
             </CardContent>
           </Card>
         </div>
         <LineChartComponent />
+        <PieChartComponent />
         <div className="grid gap-4 md:grid-cols-2">
           <Card className="col-span-1">
             <CardHeader>

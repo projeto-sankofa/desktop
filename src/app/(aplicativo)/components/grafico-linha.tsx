@@ -9,19 +9,22 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from "recharts"
 
 const data = [
-  { name: "Jan", valor: 400 },
-  { name: "Fev", valor: 300 },
-  { name: "Mar", valor: 600 },
-  { name: "Abr", valor: 800 },
-  { name: "Mai", valor: 500 },
-  { name: "Jun", valor: 900 },
-  { name: "Jul", valor: 750 },
+  { name: "Jan", racistas: 400, naoRacistas: 300 },
+  { name: "Fev", racistas: 300, naoRacistas: 400 },
+  { name: "Mar", racistas: 600, naoRacistas: 500 },
+  { name: "Abr", racistas: 800, naoRacistas: 650 },
+  { name: "Mai", racistas: 500, naoRacistas: 700 },
+  { name: "Jun", racistas: 900, naoRacistas: 800 },
+  { name: "Jul", racistas: 750, naoRacistas: 850 },
 ]
 
 export function LineChartComponent() {
+  const corRacistas = "oklch(0.637 0.237 25.331)";
+  const corNaoRacistas = "oklch(0.985 0 0)";
   return (
     <Card>
       <CardHeader>
@@ -42,13 +45,41 @@ export function LineChartComponent() {
             />
             <Line
               type="monotone"
-              dataKey="valor"
-              stroke="oklch(var(--primary))"
+              dataKey="racistas"
+              stroke={corRacistas}
+              color="oklch(0.637 0.237 25.331);"
               strokeWidth={3}
               dot={{ r: 4 }}
               activeDot={{ r: 6 }}
-              name="Valor"
-              className="stroke-primary"
+              name="Racistas"
+              
+            />
+
+            <Line
+              type="monotone"
+              dataKey="naoRacistas"
+              stroke={corNaoRacistas}
+              strokeWidth={3}
+              dot={{ r: 4 }}
+              activeDot={{ r: 6 }}
+              name="Não Racistas"
+              
+            />
+
+            <Legend
+              verticalAlign="bottom"
+              height={36}
+              wrapperStyle={{
+                paddingTop: "10px",
+                color: "hsl(var(--foreground))",
+              }}
+              formatter={(value, entry) => {
+                const { color }= entry
+                return <span className={value == 'Racistas' ? 'text-primary' : "text-accent-foreground"}>{value}</span>
+              }}
+              iconType="circle"
+              iconSize={10}
+              
             />
           </RechartsLineChart>
         </ResponsiveContainer>
