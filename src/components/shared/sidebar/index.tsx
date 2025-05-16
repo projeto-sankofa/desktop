@@ -2,32 +2,29 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
-  GalleryVerticalEnd,
-  SquareTerminal,
-  User,
   University,
   House,
   ChartLine
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/shared/sidebar/components/nav-main"
+import { NavUser } from "@/components/shared/sidebar/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { title } from "process"
-import { LoginSideBar } from "@/components/login-sidebar"
+import { LoginSideBar } from "@/components/shared/sidebar/components/login-sidebar"
 
 // This is sample data.
 const data = {
@@ -36,23 +33,6 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Home",
@@ -128,20 +108,13 @@ const data = {
       ],
     },
   ],
-  projects: [
-    {
-      name: "IFSP",
-      url: "https://portal.cmp.ifsp.edu.br/",
-      icon: University,
-    },
 
-  ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const conectado :Boolean = data.user != null ? true : false
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} className="bg-sidebar">
       <SidebarHeader>
         {/*<TeamSwitcher teams={data.teams} />*/}
         {conectado ? (
@@ -152,7 +125,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+          <SidebarGroupLabel>Parceiros</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItem >
+              <SidebarMenuButton asChild>
+                <a href="https://portal.cmp.ifsp.edu.br/">
+                  <University />
+                  <span>IFSP</span>
+                </a>
+              </SidebarMenuButton>
+            
+              </SidebarMenuItem>
+       
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <SidebarTrigger className="-ml-1 h-10 w-10" />

@@ -23,8 +23,8 @@ const data = [
 ]
 
 export function LineChartComponent() {
-  const corRacistas = "oklch(0.637 0.237 25.331)";
-  const corNaoRacistas = "oklch(0.985 0 0)";
+  const corRacistas = "var(--primary)";
+  const corNaoRacistas = "var(--accent-foreground)";
   return (
     <Card>
       <CardHeader>
@@ -47,7 +47,6 @@ export function LineChartComponent() {
               type="monotone"
               dataKey="racistas"
               stroke={corRacistas}
-              color="oklch(0.637 0.237 25.331);"
               strokeWidth={3}
               dot={{ r: 4 }}
               activeDot={{ r: 6 }}

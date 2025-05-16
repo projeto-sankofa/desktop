@@ -10,7 +10,7 @@ import {
 } from "recharts"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
-const COLORS = ["oklch(0.645 0.246 16.439)",  "oklch(0.985 0 0)", "oklch(0.488 0.243 264.376)"]
+const COLORS = ["var(--chart-1)",  "var(--chart-2)", "var(--chart-5)"]
 
 export function PieChartComponent() {
   const dadosRacistas = [
@@ -20,11 +20,12 @@ export function PieChartComponent() {
   ]
 
   const dadosNaoRacistas = [
-    { name: "X", value: 600 },
+    { name: "X", value: 200 },
     { name: "Instagram", value: 300 },
-    { name: "BlueSky", value: 200 },
+    { name: "BlueSky", value: 550 },
   ]
-
+  const centerText = "1200"
+  const centerSubText = "Casos analisados"
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Card>
@@ -40,8 +41,11 @@ export function PieChartComponent() {
                 nameKey="name"
                 cx="50%"
                 cy="50%"
-                outerRadius={90}
+                innerRadius="60%"
+                outerRadius="80%"
                 fill="#8884d8"
+                paddingAngle={2}
+                stroke="transparent"
                 
               >
                 {dadosRacistas.map((entry, index) => (
@@ -61,6 +65,7 @@ export function PieChartComponent() {
         </CardHeader>
         <CardContent className="h-[300px]">
           <ResponsiveContainer width="100%" height="100%">
+            
             <PieChart>
               <Pie
                 data={dadosNaoRacistas}
@@ -68,17 +73,23 @@ export function PieChartComponent() {
                 nameKey="name"
                 cx="50%"
                 cy="50%"
-                outerRadius={90}
+                innerRadius="60%"
+                outerRadius="80%"
+                paddingAngle={2}
                 fill="#82ca9d"
-                label
+                stroke="transparent"
+                
               >
                 {dadosNaoRacistas.map((entry, index) => (
                   <Cell key={`cell-nao-racista-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
+                
               </Pie>
               <Tooltip />
               <Legend />
+              
             </PieChart>
+            
           </ResponsiveContainer>
         </CardContent>
       </Card>

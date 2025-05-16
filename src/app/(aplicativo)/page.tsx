@@ -38,7 +38,7 @@ export default function Dashboard() {
         </div>
         <LineChartComponent />
         <PieChartComponent />
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-3">
           <Card className="col-span-1">
             <CardHeader>
               <CardTitle>Relatórios Gerados</CardTitle>
@@ -54,7 +54,7 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
-          <Card className="col-span-1">
+          <Card className="col-span-2">
             <CardHeader>
               <CardTitle>Histórico de Análises</CardTitle>
             </CardHeader>
