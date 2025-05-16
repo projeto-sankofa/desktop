@@ -6,13 +6,12 @@ import {
   BookOpen,
   Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
   SquareTerminal,
-  User
+  User,
+  University,
+  House,
+  ChartLine
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -28,6 +27,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { title } from "process"
+import { LoginSideBar } from "@/components/login-sidebar"
 
 // This is sample data.
 const data = {
@@ -55,46 +55,57 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Home",
       url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      icon: House,
+      isActive: false,
       items: [
         {
-          title: "History",
+            title: "Dashboard",
+            url: "/"
+        }
+      ],
+    },
+    {
+      title: "Analíses",
+      url: "/analises",
+      icon: ChartLine,
+      items: [
+        {
+          title: "Nova Analíse",
+          url: "/nova-analise",
+        },
+        {
+          title: "Minhas Analíses",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "Dashboard",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Modelo",
       url: "#",
       icon: Bot,
       items: [
         {
-          title: "Genesis",
+          title: "Especificações",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "Matriz de confusão",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Acurácia",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Documentação",
       url: "#",
       icon: BookOpen,
       items: [
@@ -116,70 +127,34 @@ const data = {
         },
       ],
     },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-        {
-          title: "Login",
-          url: "/entrar" 
-        },
-      ],
-    },
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
+      name: "IFSP",
+      url: "https://portal.cmp.ifsp.edu.br/",
+      icon: University,
     },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-    {
-        name: "Login",
-        url: "/entrar",
-        icon: User,
-      },
+
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const conectado :Boolean = data.user != null ? true : false
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        {/*<TeamSwitcher teams={data.teams} />*/}
+        {conectado ? (
+            <NavUser user={data.user} />
+        ) : (
+            <LoginSideBar />
+        )}
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
         <SidebarTrigger className="-ml-1 h-10 w-10" />
       </SidebarFooter>
       <SidebarRail />
