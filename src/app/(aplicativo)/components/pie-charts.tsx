@@ -1,14 +1,14 @@
 "use client"
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
-  PieChart,
-  Pie,
   Cell,
-  Tooltip,
   Legend,
+  Pie,
+  PieChart,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
 const COLORS = ["oklch(0.60 0.28 25 / 0.7)",  "oklch(0.75 0.28 25 / 0.7)", "oklch(0.90 0.28 25 / 0.7)"]
 
