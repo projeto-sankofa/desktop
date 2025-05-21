@@ -2,19 +2,14 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-<<<<<<< HEAD:src/app/(aplicativo)/components/grafico-linha.tsx
+  Area,
   CartesianGrid,
   Legend,
-  Line,
-  LineChart as RechartsLineChart,
+  AreaChart as RechartsAreaChart,
   ResponsiveContainer,
   Tooltip,
-=======
-  AreaChart as RechartsAreaChart,
-  Area,
->>>>>>> refs/remotes/origin/development:src/app/(aplicativo)/components/grafico-area.tsx
   XAxis,
-  YAxis,
+  YAxis
 } from "recharts";
 
 const data = [

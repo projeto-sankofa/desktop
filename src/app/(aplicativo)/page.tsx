@@ -1,15 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-<<<<<<< HEAD
-import { LineChartComponent } from "./components/grafico-linha"
-=======
 import { LineChartComponent } from "./components/grafico-area"
->>>>>>> refs/remotes/origin/development
 import { PieChartComponent } from "./components/pie-charts"
-import { redirect } from "next/navigation"
 
-export default async function Dashboard() {
-  
-  redirect('/entrar')
+export default function Dashboard() {
   
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
