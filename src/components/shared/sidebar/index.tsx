@@ -112,7 +112,8 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const conectado :Boolean = data.user != null ? true : false
+  //const conectado :Boolean = data.user != null ? true : false
+  const conectado = false;
   return (
     <Sidebar collapsible="icon" {...props} className="bg-sidebar">
       <SidebarHeader>
