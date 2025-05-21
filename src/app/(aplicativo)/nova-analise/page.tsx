@@ -14,8 +14,8 @@ const Index = () => {
     ig: false,
     bs: false
   });
-  const [isAutomatic, setIsAutomatic] = useState(true);
-  const [isPrivate, setIsPrivate] = useState(true);
+  const [isAutomatic, setIsAutomatic] = useState(false);
+  const [isPrivate, setIsPrivate] = useState(false);
   const [messageCount, setMessageCount] = useState([50]);
   const [ocrTexts, setOcrTexts] = useState<string[]>([]);
 
