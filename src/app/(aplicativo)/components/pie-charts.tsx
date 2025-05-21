@@ -10,7 +10,7 @@ import {
 } from "recharts"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
-const COLORS = ["var(--chart-1)",  "var(--chart-2)", "var(--chart-5)"]
+const COLORS = ["oklch(0.60 0.28 25 / 0.7)",  "oklch(0.75 0.28 25 / 0.7)", "oklch(0.90 0.28 25 / 0.7)"]
 
 export function PieChartComponent() {
   const dadosRacistas = [
@@ -24,15 +24,19 @@ export function PieChartComponent() {
     { name: "Instagram", value: 300 },
     { name: "BlueSky", value: 550 },
   ]
-  const centerText = "1200"
-  const centerSubText = "Casos analisados"
+  const totalRacistas = dadosRacistas.reduce((sum, item) => sum + item.value, 0)
+  const totalNaoRacistas = dadosNaoRacistas.reduce((sum, item) => sum + item.value, 0)
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Card>
         <CardHeader>
-          <CardTitle>Casos Racistas por Rede Social</CardTitle>
+          <CardTitle className="text-2xl">Casos Racistas por Rede Social</CardTitle>
         </CardHeader>
-        <CardContent className="h-[300px]">
+        <CardContent className="h-[300px] relative">
+          <div className="absolute bottom-3 inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+            <span className="text-4xl font-bold">{totalRacistas}</span>
+            <span className="text-md text-muted-foreground">Racistas</span>
+          </div>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -53,7 +57,20 @@ export function PieChartComponent() {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend />
+              <Legend 
+              verticalAlign="bottom"
+              height={36}
+              wrapperStyle={{
+                paddingTop: "5px",
+                color: "hsl(var(--foreground))",
+              }}
+              formatter={(value, entry) => {
+                return <span className="text-accent-foreground text-lg align-middle">{value}</span>
+              }}
+              iconType="circle"
+              iconSize={10}
+              
+              />
             </PieChart>
           </ResponsiveContainer>
         </CardContent>
@@ -61,9 +78,13 @@ export function PieChartComponent() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Casos Não Racistas por Rede Social</CardTitle>
+          <CardTitle className="text-2xl">Casos Não Racistas por Rede Social</CardTitle>
         </CardHeader>
-        <CardContent className="h-[300px]">
+        <CardContent className="h-[300px] relative">
+          <div className="absolute bottom-3 inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+            <span className="text-4xl font-bold">{totalNaoRacistas}</span>
+            <span className="text-md text-muted-foreground">Não racistas</span>
+          </div>
           <ResponsiveContainer width="100%" height="100%">
             
             <PieChart>
@@ -86,7 +107,19 @@ export function PieChartComponent() {
                 
               </Pie>
               <Tooltip />
-              <Legend />
+              <Legend 
+              verticalAlign="bottom"
+              height={36}
+              wrapperStyle={{
+                paddingTop: "5px",
+                color: "hsl(var(--foreground))",
+              }}
+              formatter={(value, entry) => {
+                return <span className="text-accent-foreground text-lg text-center align-middle">{value}</span>
+              }}
+              iconType="circle"
+              iconSize={10}
+              />
               
             </PieChart>
             

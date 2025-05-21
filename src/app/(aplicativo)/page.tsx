@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { LineChartComponent } from "./components/grafico-linha"
+import { LineChartComponent } from "./components/grafico-area"
 import { PieChartComponent } from "./components/pie-charts"
 
 export default function Dashboard() {
@@ -10,29 +9,29 @@ export default function Dashboard() {
         <div className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-md font-medium">Total de Analíses</CardTitle>
+              <CardTitle className="text-2xl font-medium">Total de Analíses</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">128</div>
-              <p className="text-xs text-muted-foreground">+14% em relação ao mês anterior</p>
+              <p className="text-sm text-muted-foreground">+14% em relação ao mês anterior</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-md font-medium">Casos de Racismo</CardTitle>
+              <CardTitle className="text-2xl font-medium">Casos de Racismo</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">342</div>
-              <p className="text-xs text-muted-foreground">+5.2% em relação ao mês anterior</p>
+              <p className="text-sm text-muted-foreground">+5.2% em relação ao mês anterior</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-md font-medium">Precisão I.A</CardTitle>
+              <CardTitle className="text-2xl font-medium">Precisão I.A</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">92%</div>
-              <p className="text-xs text-muted-foreground">Testado e comprovado</p>
+              <p className="text-sm text-muted-foreground">Testado e comprovado</p>
             </CardContent>
           </Card>
         </div>
@@ -41,7 +40,7 @@ export default function Dashboard() {
         <div className="grid gap-4 md:grid-cols-3">
           <Card className="col-span-1">
             <CardHeader>
-              <CardTitle>Relatórios Gerados</CardTitle>
+              <CardTitle className="text-2xl">Relatórios Gerados</CardTitle>
             </CardHeader>
             <CardContent className="h-[250px] flex items-center justify-center border-t pt-4">
               <div className="w-full h-full flex flex-col gap-2">
@@ -56,14 +55,20 @@ export default function Dashboard() {
           </Card>
           <Card className="col-span-2">
             <CardHeader>
-              <CardTitle>Histórico de Análises</CardTitle>
+              <CardTitle className="text-2xl">Histórico de Análises</CardTitle>
             </CardHeader>
             <CardContent className="h-[250px] flex items-center justify-center border-t pt-4">
               <div className="w-full h-full flex flex-col gap-2">
                 {[1, 2, 3, 4].map((item) => (
                   <div key={item} className="flex justify-between items-center p-2 border rounded-md">
-                    <div>Análise #{item}</div>
-                    <div className="text-muted-foreground text-sm">10/05/2023</div>
+                    <div >
+                      Análise #{item}
+                    </div>
+                    <div className="text-muted-foreground text-sm flex gap-4">
+                      <p>Feito por: Pedro Henrique</p>
+                      |
+                      <p>10/05/2023</p>
+                    </div>
                   </div>
                 ))}
               </div>
