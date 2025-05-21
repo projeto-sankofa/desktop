@@ -3,12 +3,6 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
-import {AppSidebar} from "@/components/shared/sidebar/index"
 const outfit = Outfit({
   subsets: ["latin"],
 });
@@ -31,9 +25,8 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-          
         >
-          {children}   
+          {children}
         </ThemeProvider>
       </body>
     </html>

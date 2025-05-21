@@ -1,9 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LineChartComponent } from "./components/grafico-linha"
 import { PieChartComponent } from "./components/pie-charts"
+import { redirect } from "next/navigation"
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  
+  redirect('/entrar')
+  
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
