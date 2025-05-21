@@ -20,6 +20,7 @@ const data = [
   { name: "Mai", racistas: 500, naoRacistas: 700 },
   { name: "Jun", racistas: 900, naoRacistas: 800 },
   { name: "Jul", racistas: 750, naoRacistas: 850 },
+  {name: "Ago", racistas: 650, naoRacistas:900}
 ]
 
 export function LineChartComponent() {

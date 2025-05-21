@@ -35,8 +35,19 @@ export function NavMain({
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Sankofa.AI</SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu key="app">
         {items.map((item) => (
+          !item.items ?
+          <SidebarMenuItem className="">
+                <a href="/" className="">
+                    <SidebarMenuButton tooltip={item.title}>
+                      {item.icon && <item.icon className="h-4 w-4" />}
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </a>
+            </SidebarMenuItem>
+          
+          :
           <Collapsible
             key={item.title}
             asChild

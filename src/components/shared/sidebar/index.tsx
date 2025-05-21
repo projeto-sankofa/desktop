@@ -35,16 +35,10 @@ const data = {
   },
   navMain: [
     {
-      title: "Home",
-      url: "#",
+      title: "Dashboard",
+      url: "/",
       icon: House,
       isActive: false,
-      items: [
-        {
-            title: "Dashboard",
-            url: "/"
-        }
-      ],
     },
     {
       title: "Analíses",
@@ -128,10 +122,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Parceiros</SidebarGroupLabel>
-          <SidebarMenu>
+          <SidebarMenu key="parceiros">
             <SidebarMenuItem >
               <SidebarMenuButton asChild>
-                <a href="https://portal.cmp.ifsp.edu.br/">
+                <a href="https://portal.cmp.ifsp.edu.br/" target="_blank">
                   <University />
                   <span>IFSP</span>
                 </a>
