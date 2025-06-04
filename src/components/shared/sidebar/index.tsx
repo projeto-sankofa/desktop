@@ -50,8 +50,8 @@ const data = {
           url: "/nova-analise",
         },
         {
-          title: "Minhas Analíses",
-          url: "#",
+          title: "Analíses",
+          url: "/historico-de-analises",
         },
         {
           title: "Dashboard",
