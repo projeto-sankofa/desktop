@@ -3,11 +3,10 @@
 import { GitHubIcon } from "@/components/icons/github";
 import { GoogleIcon } from "@/components/icons/google";
 import { Logo } from "@/components/shared/logo";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export function LoginForm() {
-  function handleGoogleLogin() {}
-  function handleGithubLogin() {}
+
 
   return (
     <form className="max-w-lg mx-auto w-full flex flex-col gap-4">
@@ -20,14 +19,14 @@ export function LoginForm() {
         </span>
       </div>
 
-      <Button variant="outline" size="lg" onClick={handleGoogleLogin}>
-        <GoogleIcon />
-        Entrar com Google
-      </Button>
-      <Button variant="outline" size="lg" onClick={handleGithubLogin}>
-        <GitHubIcon />
-        Entrar com Github
-      </Button>
+      <a href="http://localhost:5000/auth/google" className={buttonVariants({variant:"outline"})}>
+          <GoogleIcon />
+          Entrar com Google
+      </a>
+      <a href="http://localhost:5000/auth/github" className={buttonVariants({variant:"outline"})}>
+          <GitHubIcon />
+          Entrar com GitHub
+      </a>
     </form>
   );
 }
