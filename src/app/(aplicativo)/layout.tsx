@@ -4,13 +4,9 @@ import { PropsWithChildren } from "react";
 
 export default function SiteLayout({ children }: PropsWithChildren) {
   return (
-   
     <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>  
-            {children}
-        </SidebarInset>
+      <AppSidebar />
+      <SidebarInset>{children}</SidebarInset>
     </SidebarProvider>
-    
   );
 }

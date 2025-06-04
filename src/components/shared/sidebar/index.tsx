@@ -57,6 +57,10 @@ const data = {
           title: "Dashboard",
           url: "#",
         },
+        {
+          title: "Gerar Relátorio",
+          url: "/gerar-relatorio",
+        },
       ],
     },
     {
