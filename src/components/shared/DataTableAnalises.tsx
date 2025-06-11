@@ -3,6 +3,7 @@ import React, { useState, useMemo } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 import { 
   Select,
   SelectContent,
@@ -37,6 +38,11 @@ export interface Analysis {
   classification: 'racistas' | 'não racistas';
   modelAccuracy: string;
   ownerId: string;
+  networks: {
+    ig: boolean,
+    x: boolean,
+    bs: boolean
+  }
 }
 
 interface DataTableProps {
@@ -184,9 +190,9 @@ export function DataTable({ data, title = "Todas as Análises", currentUserId = 
                 <TableCell className="font-medium">{analysis.modelAccuracy}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm">
+                    <Link href={`http://localhost:3000/historico-de-analises/${analysis.id}`} >
                       <Eye className="w-4 h-4" />
-                    </Button>
+                    </Link>
                     {currentUserId === analysis.ownerId && (
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>

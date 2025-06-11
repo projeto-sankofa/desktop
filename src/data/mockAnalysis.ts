@@ -11,7 +11,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 1520,
     classification: 'não racistas',
     modelAccuracy: '94.2%',
-    ownerId: 'user1'
+    ownerId: 'user1',
+    networks: {
+      x: false,
+      ig: true,
+      bs: true
+    }
   },
   {
     id: '2',
@@ -22,7 +27,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 892,
     classification: 'racistas',
     modelAccuracy: '87.5%',
-    ownerId: 'user2'
+    ownerId: 'user2',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '3',
@@ -33,7 +43,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 2340,
     classification: 'não racistas',
     modelAccuracy: '96.8%',
-    ownerId: 'user1'
+    ownerId: 'user1',
+    networks: {
+      x: true,
+      ig: false,
+      bs: false
+    }
   },
   {
     id: '4',
@@ -44,7 +59,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 678,
     classification: 'racistas',
     modelAccuracy: '72.3%',
-    ownerId: 'user3'
+    ownerId: 'user3',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '5',
@@ -55,7 +75,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 1847,
     classification: 'racistas',
     modelAccuracy: '91.7%',
-    ownerId: 'user1'
+    ownerId: 'user1',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '6',
@@ -66,7 +91,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 1203,
     classification: 'não racistas',
     modelAccuracy: '85.4%',
-    ownerId: 'user4'
+    ownerId: 'user4',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '7',
@@ -77,7 +107,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 3456,
     classification: 'racistas',
     modelAccuracy: '98.1%',
-    ownerId: 'user2'
+    ownerId: 'user2',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '8',
@@ -88,7 +123,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 567,
     classification: 'não racistas',
     modelAccuracy: '68.9%',
-    ownerId: 'user5'
+    ownerId: 'user5',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '9',
@@ -99,7 +139,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 2145,
     classification: 'racistas',
     modelAccuracy: '93.6%',
-    ownerId: 'user1'
+    ownerId: 'user1',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '10',
@@ -110,7 +155,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 987,
     classification: 'não racistas',
     modelAccuracy: '88.2%',
-    ownerId: 'user6'
+    ownerId: 'user6',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '11',
@@ -121,7 +171,12 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 1654,
     classification: 'racistas',
     modelAccuracy: '92.4%',
-    ownerId: 'user2'
+    ownerId: 'user2',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   },
   {
     id: '12',
@@ -132,6 +187,11 @@ export const mockAnalyses: Analysis[] = [
     quantityEvaluated: 2789,
     classification: 'não racistas',
     modelAccuracy: '97.3%',
-    ownerId: 'user1'
+    ownerId: 'user1',
+    networks: {
+      x: true,
+      ig: false,
+      bs: true
+    }
   }
 ];
