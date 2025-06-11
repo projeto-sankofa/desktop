@@ -1,16 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import {
-  BookOpen,
-  Bot,
-  University,
-  House,
-  ChartLine
-} from "lucide-react"
+import * as React from "react";
+import { BookOpen, Bot, University, House, ChartLine } from "lucide-react";
 
-import { NavMain } from "@/components/shared/sidebar/components/nav-main"
-import { NavUser } from "@/components/shared/sidebar/components/nav-user"
+import { NavMain } from "@/components/shared/sidebar/components/nav-main";
+import { NavUser } from "@/components/shared/sidebar/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -23,8 +17,8 @@ import {
   SidebarMenuItem,
   SidebarRail,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { LoginSideBar } from "@/components/shared/sidebar/components/login-sidebar"
+} from "@/components/ui/sidebar";
+import { LoginSideBar } from "@/components/shared/sidebar/components/login-sidebar";
 
 // This is sample data.
 const data = {
@@ -106,8 +100,7 @@ const data = {
       ],
     },
   ],
-
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   //const conectado :Boolean = data.user != null ? true : false
@@ -116,27 +109,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" {...props} className="bg-sidebar">
       <SidebarHeader>
         {/*<TeamSwitcher teams={data.teams} />*/}
-        {conectado ? (
-            <NavUser user={data.user} />
-        ) : (
-            <LoginSideBar />
-        )}
+        {conectado ? <NavUser user={data.user} /> : <LoginSideBar />}
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Parceiros</SidebarGroupLabel>
           <SidebarMenu key="parceiros">
-            <SidebarMenuItem >
+            <SidebarMenuItem>
               <SidebarMenuButton asChild>
                 <a href="https://portal.cmp.ifsp.edu.br/" target="_blank">
                   <University />
                   <span>IFSP</span>
                 </a>
               </SidebarMenuButton>
-            
-              </SidebarMenuItem>
-       
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
@@ -145,5 +132,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
