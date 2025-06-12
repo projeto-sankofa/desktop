@@ -42,7 +42,15 @@ export interface Analysis {
     ig: boolean,
     x: boolean,
     bs: boolean
-  }
+  },
+  comentarios: {
+      id: string;
+      platform: 'x' | 'instagram' | 'bluesky';
+      content: string;
+      publishedAt: string;
+      classification: 'racista' | 'não racista';
+      accuracy: number;
+  }[]
 }
 
 interface DataTableProps {

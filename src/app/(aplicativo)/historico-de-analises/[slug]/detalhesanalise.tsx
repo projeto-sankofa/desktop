@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import SocialNetworkCard from "@/components/shared/socialnetworkcard";
 import { Instagram, X } from "lucide-react";
+import DataTableComentarios from "@/components/shared/DataTableComentarios";
 
 
 type Props = {
@@ -127,7 +128,7 @@ export default function DetalhesAnaliseClient({ analise, userId }: Props) {
             </div>
             {/*data table */}
             <div className="w-full flex items-center justify-center ">
-                data table dos comentários analisados
+                <DataTableComentarios   idAnalise={analise?.id!} />
             </div>
         </main>
       </div>
