@@ -1,12 +1,13 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import EditableTitle from "./components/editableTitle"
 import { Analysis } from '@/components/shared/DataTableAnalises';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import SocialNetworkCard from "@/components/shared/socialnetworkcard";
 import { Instagram, X } from "lucide-react";
 import DataTableComentarios from "@/components/shared/DataTableComentarios";
+import GraficoBarraRedes from "./components/GraficoBarra";
+
 
 
 type Props = {
@@ -30,22 +31,12 @@ export default function DetalhesAnaliseClient({ analise, userId }: Props) {
     console.log('Título alterado para:', newTitle)
   }
 
-  const [selectedNetworks, setSelectedNetworks] = useState<Record<string, boolean>>({
-    x: false,
-    ig: false,
-    bs: false
-  });
-  useEffect(() => {
-    if (analise?.networks) {
-      setSelectedNetworks(analise.networks)
-    }
-  }, [analise])
-    const toggleNetwork = (network: string) => {
-    setSelectedNetworks(prev => ({
-      ...prev,
-      [network]: !prev[network]
-    }));
-  };
+  let NetworkLenght = 0
+  if(analise?.networks.bs === true)  NetworkLenght++
+  if(analise?.networks.ig === true) NetworkLenght++
+  if(analise?.networks.x === true) NetworkLenght++
+
+
   return (
     <div className="flex min-h-screen w-full bg-background">
       <div className="flex-1 overflow-y-auto p-6 gap-8">
@@ -89,16 +80,33 @@ export default function DetalhesAnaliseClient({ analise, userId }: Props) {
         </div>
         <main className="p-6 w-full space-y-6">
             {/* stats */}
-            <div className="grid grid-cols-3 gap-15">
+            <div className="grid grid-cols-4 gap-15">
                 <Card className="col-span-2 flex flex-col justify-center items-center h-[350px]">
-                    <p className="text-7xl">
-                        chart
-                    </p>
+                    <GraficoBarraRedes data={analise!} />
                 </Card>
-                <Card className="col-span-1 flex flex-col justify-center items-center">
+               
+                <div className="col-span-2 gap-6 grid grid-cols-3 justify-center items-center">
+                  <Card className="flex flex-col items-center justify-center h-full">
+                    <p className="text-7xl font-bold">
+                    {analise?.comentarios.length}
+                    </p>
+                    <p className="text-muted-foreground text-xl">
+                      Comentários analisados
+                    </p>
+                  </Card>
+                  <Card className="flex flex-col items-center justify-center h-full">
+                    <p className="text-7xl font-bold">
+                      {NetworkLenght}
+                    </p>
+                    <p className="text-muted-foreground text-xl">
+                      Redes analisadas
+                    </p>
+                  </Card>
+                  <Card className="flex flex-col justify-center items-center h-full">
                     <p className="text-7xl font-bold">{analise?.modelAccuracy}</p>
-                    <p className="text-muted-foreground">Acurácia da Análise</p>
-                </Card> 
+                    <p className="text-muted-foreground text-xl">Acurácia da Análise</p>
+                  </Card>
+                </div> 
             </div>
             {/*tweak cards */}
             <div className="w-full flex justify-between space-y-6">

@@ -157,7 +157,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
       {/* Footer with pagination */}
       <div className="bg-white px-6 py-3 flex items-center justify-between border-t border-gray-200">
         <div className="text-sm text-gray-500">
-          Mostrando 1 até 10 de {mockData.length} comentários
+          Mostrando 1 até 10 de {analise?.comentarios.length} comentários
         </div>
         <div className="flex items-center space-x-2">
           <Button
@@ -169,7 +169,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
             Anterior
           </Button>
           <div className="flex space-x-1">
-            {[1, 2].map((page) => (
+            {[totalPages].map((page) => (
               <Button
                 key={page}
                 variant={currentPage === page ? "default" : "outline"}
