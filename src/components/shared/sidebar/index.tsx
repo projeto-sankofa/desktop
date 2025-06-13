@@ -48,10 +48,6 @@ const data = {
           url: "/historico-de-analises",
         },
         {
-          title: "Dashboard",
-          url: "#",
-        },
-        {
           title: "Gerar Relátorio",
           url: "/gerar-relatorio",
         },
