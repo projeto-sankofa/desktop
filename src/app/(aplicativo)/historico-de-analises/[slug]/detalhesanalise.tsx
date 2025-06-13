@@ -129,7 +129,7 @@ export default function DetalhesAnaliseClient({ analise, userId }: Props) {
                     
                 </div>
                 <div>
-                    <Card className="flex items-center justify-center w-20 h-20 bg-green-50 border-4 border-green-700 ">
+                    <Card className="flex items-center justify-center w-20 h-20 border border-primary text-primary font-bold ">
                         V.001    
                     </Card>                   
                 </div>

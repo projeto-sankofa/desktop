@@ -63,38 +63,38 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
   return (
     <div className="w-full space-y-6">
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border-gray-200 border bg-white">
+      <div className="overflow-x-auto rounded-lg border border-accent ">
         <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-200">
+          <thead className="bg-background">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 ID Comentário
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 Plataforma
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 Conteúdo
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 Publicado em
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 Classificação
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 Acurácia
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">
                 Ações
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className=" ">
             {/*mapear os comentarios da analise*/ }
             {paginatedData!.map((comment) => (
-              <tr key={comment.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <tr key={comment.id} className="hover:bg-accent">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   {comment.id}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -102,32 +102,32 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium mr-3 ${getPlatformColor(comment.platform)}`}>
                       {getPlatformIcon(comment.platform)}
                     </div>
-                    <span className="text-sm text-gray-900">{getPlatformName(comment.platform)}</span>
+                    <span className="text-sm">{getPlatformName(comment.platform)}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900 max-w-md">
+                <td className="px-6 py-4 text-sm  max-w-md">
                   <div className="truncate" title={comment.content}>
                     {comment.content}
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 whitespace-nowrap text-sm ">
                   {comment.publishedAt}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <Badge 
                     variant={comment.classification === 'racista' ? 'destructive' : 'secondary'}
                     className={comment.classification === 'racista' 
-                      ? 'bg-red-100 text-red-800 hover:bg-red-200' 
-                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      ? 'bg-primary text-white' 
+                      : 'bg-accent-foreground text-muted'
                     }
                   >
                     {comment.classification}
                   </Badge>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   {comment.accuracy}%
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-6 py-4 whitespace-nowrap text-sm ">
                   {analise!.ownerId === currentUserId ? (
                     <div className="flex items-center space-x-2">
                       <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -147,7 +147,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
                       </DropdownMenu>
                     </div>
                   ) : (
-                    <span className="text-gray-400">-</span>
+                    <span className="">-</span>
                   )}
                 </td>
               </tr>
