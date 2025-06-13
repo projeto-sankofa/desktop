@@ -23,6 +23,8 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(analise?.comentarios.length! / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedData = analise?.comentarios.slice(startIndex, startIndex + itemsPerPage);
   
   // Simular usuário atual - em uma aplicação real, isso viria de um contexto de autenticação
   const currentUserId = "user123";
@@ -59,9 +61,9 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
   };
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 w-full">
+    <div className="w-full space-y-6">
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-lg border-gray-200 border bg-white">
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
@@ -90,7 +92,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {/*mapear os comentarios da analise*/ }
-            {analise?.comentarios.map((comment) => (
+            {paginatedData!.map((comment) => (
               <tr key={comment.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {comment.id}
@@ -126,7 +128,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
                   {comment.accuracy}%
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {analise.ownerId === currentUserId ? (
+                  {analise!.ownerId === currentUserId ? (
                     <div className="flex items-center space-x-2">
                       <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                         <Eye className="h-4 w-4" />
@@ -155,42 +157,66 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
       </div>
 
       {/* Footer with pagination */}
-      <div className="bg-white px-6 py-3 flex items-center justify-between border-t border-gray-200">
-        <div className="text-sm text-gray-500">
-          Mostrando 1 até 10 de {analise?.comentarios.length} comentários
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-            disabled={currentPage === 1}
-          >
-            Anterior
-          </Button>
-          <div className="flex space-x-1">
-            {[totalPages].map((page) => (
-              <Button
-                key={page}
-                variant={currentPage === page ? "default" : "outline"}
-                size="sm"
-                onClick={() => setCurrentPage(page)}
-                className={currentPage === page ? "bg-red-600 hover:bg-red-700" : ""}
-              >
-                {page}
-              </Button>
-            ))}
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-            disabled={currentPage === totalPages}
-          >
-            Próximo
-          </Button>
-        </div>
-      </div>
+      {totalPages > 1 && (
+              <div className="flex items-center justify-between">
+                <p className="text-sm text-muted-foreground">
+                  Mostrando {startIndex + 1} até {Math.min(startIndex + itemsPerPage, analise?.comentarios.length!)} de {analise?.comentarios.length!} análises
+                </p>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                  >
+                    Anterior
+                  </Button>
+                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    let pageNum;
+                    if (totalPages <= 5) {
+                      pageNum = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNum = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      pageNum = totalPages - 4 + i;
+                    } else {
+                      pageNum = currentPage - 2 + i;
+                    }
+                    
+                    return (
+                      <Button
+                        key={pageNum}
+                        variant={currentPage === pageNum ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setCurrentPage(pageNum)}
+                      >
+                        {pageNum}
+                      </Button>
+                    );
+                  })}
+                  {totalPages > 5 && currentPage < totalPages - 2 && (
+                    <>
+                      <span className="text-sm text-muted-foreground">...</span>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(totalPages)}
+                      >
+                        {totalPages}
+                      </Button>
+                    </>
+                  )}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                  >
+                    Próximo
+                  </Button>
+                </div>
+              </div>
+      )}
     </div>
   );
 };
