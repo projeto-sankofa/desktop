@@ -189,7 +189,7 @@ export function DataTable({ data, title = "Todas as Análises", currentUserId = 
                   </div>
                 </TableCell>
                 <TableCell className="text-muted-foreground">{analysis.analysisDate}</TableCell>
-                <TableCell className="font-medium">{analysis.quantityEvaluated.toLocaleString()}</TableCell>
+                <TableCell className="font-medium">{analysis.comentarios.length.toLocaleString()}</TableCell>
                 <TableCell>
                   <Badge variant="secondary" className={classificationColors[analysis.classification]}>
                     {analysis.classification}

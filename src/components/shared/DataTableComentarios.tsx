@@ -10,6 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { mockAnalyses } from '@/data/mockAnalysis';
+import { SheetTrigger } from '../ui/sheet';
+import SheetComentarios from './sheet';
 
 type DataTableComentariosProps = {
     idAnalise : string
@@ -27,7 +29,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
   const paginatedData = analise?.comentarios.slice(startIndex, startIndex + itemsPerPage);
   
   // Simular usuário atual - em uma aplicação real, isso viria de um contexto de autenticação
-  const currentUserId = "user123";
+  const currentUserId = "user1";
 
   const getPlatformIcon = (platform: string) => {
     switch (platform) {
@@ -128,27 +130,9 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
                   {comment.accuracy}%
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm ">
-                  {analise!.ownerId === currentUserId ? (
                     <div className="flex items-center space-x-2">
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="bg-white border border-gray-200 shadow-lg">
-                          <DropdownMenuItem>Ver detalhes</DropdownMenuItem>
-                          <DropdownMenuItem>Editar</DropdownMenuItem>
-                          <DropdownMenuItem className="text-red-600">Excluir</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                      <SheetComentarios AnaliseId={analise?.id!} OwnerId={analise?.ownerId!} comentario={comment} CurrentId={currentUserId} />
                     </div>
-                  ) : (
-                    <span className="">-</span>
-                  )}
                 </td>
               </tr>
             ))}
