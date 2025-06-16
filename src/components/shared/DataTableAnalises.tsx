@@ -37,6 +37,7 @@ export interface Analysis {
   quantityEvaluated: number;
   classification: 'racistas' | 'não racistas';
   modelAccuracy: string;
+  visibility: 'public' | 'private';
   ownerId: string;
   networks: {
     ig: boolean,
