@@ -130,7 +130,7 @@ const DataTableComentarios = ({idAnalise} : DataTableComentariosProps) => {
                   {comment.accuracy}%
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm ">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex w-full items-center space-x-2">
                       <SheetComentarios AnaliseId={analise?.id!} OwnerId={analise?.ownerId!} comentario={comment} CurrentId={currentUserId} />
                     </div>
                 </td>

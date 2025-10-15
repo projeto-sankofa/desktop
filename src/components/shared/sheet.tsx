@@ -1,14 +1,13 @@
-
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import { Eye, Calendar, Hash, MessageSquare, Instagram, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -29,12 +28,12 @@ type SheetProps = {
     CurrentId: string
 }
 
-export default function SheetComentarios({comentario, OwnerId, AnaliseId, CurrentId} : SheetProps){
-    const eDono = OwnerId === CurrentId ? true : false
+export default function DrawerComentarios({comentario, OwnerId, AnaliseId, CurrentId} : SheetProps){
+    const eDono = OwnerId === CurrentId
     const [classification, setClassification] = useState(comentario.classification)
 
-      const getPlatformIcon = (platform: string) => {
-            switch (platform) {
+    const getPlatformIcon = (platform: string) => {
+        switch (platform) {
             case 'x':
                 return <X className="h-4 w-4" />;
             case 'instagram':
@@ -43,8 +42,8 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                 return <span className="text-xs font-bold">BS</span>;
             default:
                 return null;
-            }
-        };
+        }
+    }
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString('pt-BR', {
@@ -57,7 +56,6 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
     }
 
     const handleSave = () => {
-        // Aqui você pode implementar a lógica para salvar as alterações
         console.log('Salvando classificação:', classification)
     }
 
@@ -68,35 +66,35 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
     }
 
     return (
-        <Sheet>
-            <SheetTrigger asChild>
+        <Drawer direction="bottom">
+            <DrawerTrigger asChild>
                 <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-accent">
                     <Eye className="h-4 w-4 text-primary" />
                 </Button>
-            </SheetTrigger>
-            <SheetContent className="w-[600px] overflow-y-auto">
-                <SheetHeader className="space-y-4 pb-6 border-b border-border">
+            </DrawerTrigger>
+            <DrawerContent className="w-full  overflow-y-auto">
+                <DrawerHeader className="space-y-4 pb-6 border-b border-border">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-primary/10 rounded-lg">
                             <MessageSquare className="h-5 w-5 text-primary" />
                         </div>
                         <div>
-                            <SheetTitle className="text-xl font-semibold">Detalhes do Comentário</SheetTitle>
-                            <SheetDescription className="text-sm text-muted-foreground">
+                            <DrawerTitle className="text-xl font-semibold">Detalhes do Comentário</DrawerTitle>
+                            <DrawerDescription className="text-sm text-muted-foreground">
                                 {eDono ? 'Visualize e edite os detalhes do comentário' : 'Visualização dos detalhes do comentário'}
-                            </SheetDescription>
+                            </DrawerDescription>
                         </div>
                     </div>
-                </SheetHeader>
-                
-                <div className="space-y-6 py-6">
+                </DrawerHeader>
+
+                <div className="w-full px-6  space-y-6 py-6">
                     {/* ID do Comentário */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
                             <Hash className="h-4 w-4 text-muted-foreground" />
                             <Label className="text-sm font-medium text-foreground">ID do Comentário</Label>
                         </div>
-                        <div className="p-3  rounded-lg border border-border">
+                        <div className="p-3 rounded-lg border border-border">
                             <p className="text-sm font-mono text-foreground break-all">{comentario.id}</p>
                         </div>
                     </div>
@@ -104,10 +102,10 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                     {/* Plataforma */}
                     <div className="space-y-3">
                         <div className="flex items-center gap-2">
-                            <span className="text-lg"><MessageSquare className="h-4 w-4 text-muted-foreground" /></span>
+                            <MessageSquare className="h-4 w-4 text-muted-foreground" />
                             <Label className="text-sm font-medium text-foreground">Plataforma</Label>
                         </div>
-                        <div className="flex items-center gap-3 p-3  rounded-lg border border-border">
+                        <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
                             <span className="text-2xl">{getPlatformIcon(comentario.platform)}</span>
                             <span className="font-medium text-foreground capitalize">{comentario.platform}</span>
                         </div>
@@ -119,7 +117,7 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                             <MessageSquare className="h-4 w-4 text-muted-foreground" />
                             <Label className="text-sm font-medium text-foreground">Conteúdo</Label>
                         </div>
-                        <div className="p-4  rounded-lg border border-border">
+                        <div className="p-4 rounded-lg border border-border">
                             <p className="text-sm leading-relaxed text-foreground whitespace-pre-wrap">{comentario.content}</p>
                             <div className="mt-3 pt-3 border-t border-border">
                                 <span className="text-xs text-muted-foreground">{comentario.content.length} caracteres</span>
@@ -133,7 +131,7 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                             <Calendar className="h-4 w-4 text-muted-foreground" />
                             <Label className="text-sm font-medium text-foreground">Data de Publicação</Label>
                         </div>
-                        <div className="flex items-center gap-3 p-3  rounded-lg border border-border">
+                        <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
                             <Calendar className="h-5 w-5 text-muted-foreground" />
                             <span className="font-medium text-foreground">{formatDate(comentario.publishedAt)}</span>
                         </div>
@@ -163,7 +161,7 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                                 </SelectContent>
                             </Select>
                         ) : (
-                            <div className="flex items-center gap-3 p-3  rounded-lg border border-border">
+                            <div className="flex items-center gap-3 p-3 rounded-lg border border-border">
                                 <div className={`w-4 h-4 rounded-full ${
                                     comentario.classification === 'racista' ? 'bg-destructive' : 'bg-green-500'
                                 }`}></div>
@@ -177,7 +175,7 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                     {/* Precisão da Análise */}
                     <div className="space-y-3">
                         <Label className="text-sm font-medium text-foreground">Precisão da Análise</Label>
-                        <div className="p-4  rounded-lg border border-border">
+                        <div className="p-4 rounded-lg border border-border">
                             <div className="space-y-3">
                                 <div className="flex items-center justify-between">
                                     <span className="text-2xl font-bold ">{comentario.accuracy}%</span>
@@ -201,17 +199,17 @@ export default function SheetComentarios({comentario, OwnerId, AnaliseId, Curren
                     </div>
                 </div>
 
-                <SheetFooter className="border-t border-border pt-6 gap-3">
+                <DrawerFooter className="border-t border-border pt-6 gap-3">
                     {eDono && (
                         <Button type="button" onClick={handleSave} className="bg-primary hover:bg-primary/90">
                             Salvar Alterações
                         </Button>
                     )}
-                    <SheetClose asChild>
+                    <DrawerClose asChild>
                         <Button variant="outline">Fechar</Button>
-                    </SheetClose>
-                </SheetFooter>
-            </SheetContent>
-        </Sheet>
+                    </DrawerClose>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
     )
 }
