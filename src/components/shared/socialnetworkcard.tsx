@@ -7,12 +7,14 @@ interface SocialNetworkCardProps {
   network: 'x' | 'ig' | 'bs';
   isSelected: boolean;
   onSelect: () => void;
+  disabled?: boolean;
 }
 
 const SocialNetworkCard: React.FC<SocialNetworkCardProps> = ({ 
   network, 
   isSelected,
-  onSelect
+  onSelect,
+  disabled 
 }) => {
   const getNetworkIcon = () => {
     switch (network) {
@@ -29,17 +31,29 @@ const SocialNetworkCard: React.FC<SocialNetworkCardProps> = ({
   };
 
   return (
-    <Card 
-      className={cn(
-        "w-20 h-20 cursor-pointer flex items-center justify-center transition-colors",
-        isSelected ? "bg-primary text-primary-foreground border-2 border-primary" : "bg-card hover:bg-accent"
-      )}
-      onClick={onSelect}
-    >
-      <CardContent className="p-0 flex items-center justify-center h-full">
-        {getNetworkIcon()}
-      </CardContent>
-    </Card>
+    disabled
+      ? <Card 
+          className={cn(
+            "w-20 h-20 flex items-center justify-center opacity-50 cursor-not-allowed",
+            "bg-muted"
+          )}
+        >
+          <CardContent className="p-0 flex items-center justify-center h-full">
+            {getNetworkIcon()}
+          </CardContent>
+        </Card>
+      : <Card 
+          className={cn(
+            "w-20 h-20 cursor-pointer flex items-center justify-center transition-colors",
+            isSelected ? "bg-primary text-primary-foreground border-2 border-primary" : "bg-card hover:bg-accent"
+          )}
+          onClick={onSelect}
+        >
+          <CardContent className="p-0 flex items-center justify-center h-full">
+            {getNetworkIcon()}
+          </CardContent>
+        </Card>
+    
   );
 };
 

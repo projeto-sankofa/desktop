@@ -7,8 +7,11 @@ import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import SocialNetworkCard from '@/components/shared/socialnetworkcard';
 import { Upload } from 'lucide-react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation'
 
 const Index = () => {
+  const router = useRouter()
   const [selectedNetworks, setSelectedNetworks] = useState<Record<string, boolean>>({
     x: false,
     ig: false,
@@ -17,7 +20,7 @@ const Index = () => {
   const [isAutomatic, setIsAutomatic] = useState(false);
   const [isPrivate, setIsPrivate] = useState(false);
   const [messageCount, setMessageCount] = useState([50]);
-  const [ocrTexts, setOcrTexts] = useState<string[]>([]);
+ // const [ocrTexts, setOcrTexts] = useState<string[]>([]);
 
   const toggleNetwork = (network: string) => {
     setSelectedNetworks(prev => ({
@@ -26,13 +29,37 @@ const Index = () => {
     }));
   };
 
-  const handleOcrUpload = () => {
+  /*const handleOcrUpload = () => {
     // Simulando adição de texto OCR após upload
-    setOcrTexts(prev => [...prev, `Texto do OCR ${prev.length + 1}`]);
-  };
+    //setOcrTexts(prev => [...prev, `Texto do OCR ${prev.length + 1}`]);
+  };*/
 
-  const handleRemoveOcr = (index: number) => {
+  /*const handleRemoveOcr = (index: number) => {
     setOcrTexts(prev => prev.filter((_, i) => i !== index));
+  };*/
+
+  const handleBuscaComentarios = async () => {
+    const selected = Object.entries(selectedNetworks)
+      .filter(([_, isSelected]) => isSelected)
+      .map(([network]) => network);
+
+    if (selected.length === 0) {
+      // Nenhuma rede selecionada
+      alert("Selecione ao menos uma rede social.");
+      return;
+    }
+
+    const body = {
+      redes: selected[0],
+      qtd_mensagens: messageCount,
+    }
+    const response = await axios.post('rota_da_api_que_ativa_o_crawler', body)
+
+    if(response.data.status === 200){
+      router.push('/(aplicativo)/')
+    }else{
+      alert("Erro ao buscar comentários. Tente novamente.")
+    }
   };
 
   return (
@@ -47,6 +74,7 @@ const Index = () => {
               <Input 
                 placeholder="Nome da análise" 
                 className="w-full max-w-md" 
+                disabled={true}
               />
             </div>
             
@@ -59,8 +87,9 @@ const Index = () => {
                   <Switch 
                     checked={isAutomatic} 
                     onCheckedChange={setIsAutomatic}
+                    disabled={true}
                   />
-                  <span className="text-sm font-medium">Automática</span>
+                  <span className="text-sm font-medium text-muted-foreground">Automática</span>
                 </div>
               </div>
               
@@ -71,8 +100,9 @@ const Index = () => {
                   <Switch 
                     checked={isPrivate} 
                     onCheckedChange={setIsPrivate}
+                    disabled={true}
                   />
-                  <span className="text-sm font-medium">Privada</span>
+                  <span className="text-sm font-medium text-muted-foreground">Privada</span>
                 </div>
               </div>
             </div>
@@ -85,16 +115,20 @@ const Index = () => {
                   network="x" 
                   isSelected={selectedNetworks.x} 
                   onSelect={() => toggleNetwork('x')} 
+                  disabled={true}
+                  
                 />
                 <SocialNetworkCard 
                   network="ig" 
                   isSelected={selectedNetworks.ig} 
-                  onSelect={() => toggleNetwork('ig')} 
+                  onSelect={() => toggleNetwork('ig')}
+                  disabled={true} 
                 />
                 <SocialNetworkCard 
                   network="bs" 
                   isSelected={selectedNetworks.bs} 
-                  onSelect={() => toggleNetwork('bs')} 
+                  onSelect={() => toggleNetwork('bs')}
+                  disabled={false} 
                 />
               </div>
             </div>
@@ -118,10 +152,9 @@ const Index = () => {
             <div className="flex flex-col md:flex-row gap-4">
               <div className="w-full md:w-1/2">
                 <Card 
-                  className="border-dashed border-2 p-6 flex flex-col items-center justify-center cursor-pointer h-40"
-                  onClick={handleOcrUpload}
+                  className="border-dashed border-2 p-6 flex flex-col items-center justify-center  text-muted-foreground h-40"
                 >
-                  <Upload className="mb-2" />
+                  <Upload className="mb-2" aria-disabled={true} />
                   <p className="text-center text-muted-foreground">
                     upload para<br />OCR
                   </p>
@@ -129,32 +162,15 @@ const Index = () => {
               </div>
               
               <div className="w-full md:w-1/2">
-                {ocrTexts.length === 0 ? (
                   <div className="h-40 flex items-center justify-center text-muted-foreground">
-                    Nenhum texto OCR adicionado
+                    OCR indisponível
                   </div>
-                ) : (
-                  <div className="space-y-2">
-                    {ocrTexts.map((text, index) => (
-                      <div key={index} className="flex items-center rounded-md border px-2 py-1.5">
-                        <span className="flex-1">{`${index + 1}. ${text}`}</span>
-                        <Button 
-                          variant="ghost" 
-                          size="sm"
-                          className="h-6 w-6 p-0" 
-                          onClick={() => handleRemoveOcr(index)}
-                        >
-                          ✕
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                )}
+               
               </div>
             </div>
             
             {/* Buscar Button */}
-            <Button className="w-full bg-primary text-primary-foreground">
+            <Button className="w-full bg-primary text-primary-foreground" onClick={handleBuscaComentarios}>
               Buscar
             </Button>
           </div>

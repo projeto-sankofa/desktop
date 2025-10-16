@@ -11,18 +11,21 @@ import {
 } from "recharts"
 
 const COLORS = ["oklch(0.60 0.28 25 / 0.7)",  "oklch(0.75 0.28 25 / 0.7)", "oklch(0.90 0.28 25 / 0.7)"]
-
-export function PieChartComponent() {
+interface PieChartData {
+  racist: number;
+  nracist: number;
+}
+export function PieChartComponent({racist, nracist}: PieChartData) {
   const dadosRacistas = [
-    { name: "X", value: 400 },
-    { name: "Instagram", value: 200 },
-    { name: "BlueSky", value: 100 },
+    { name: "X", value: 0 },
+    { name: "Instagram", value: 0 },
+    { name: "BlueSky", value: racist },
   ]
 
   const dadosNaoRacistas = [
-    { name: "X", value: 200 },
-    { name: "Instagram", value: 300 },
-    { name: "BlueSky", value: 550 },
+    { name: "X", value: 0 },
+    { name: "Instagram", value: 0 },
+    { name: "BlueSky", value: nracist },
   ]
   const totalRacistas = dadosRacistas.reduce((sum, item) => sum + item.value, 0)
   const totalNaoRacistas = dadosNaoRacistas.reduce((sum, item) => sum + item.value, 0)

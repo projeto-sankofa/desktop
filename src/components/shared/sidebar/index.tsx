@@ -1,10 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { BookOpen, Bot, University, House, ChartLine } from "lucide-react";
+import {University, House, ChartLine } from "lucide-react";
 
 import { NavMain } from "@/components/shared/sidebar/components/nav-main";
-import { NavUser } from "@/components/shared/sidebar/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -18,7 +17,6 @@ import {
   SidebarRail,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { LoginSideBar } from "@/components/shared/sidebar/components/login-sidebar";
 
 // This is sample data.
 const data = {
@@ -43,55 +41,13 @@ const data = {
           title: "Nova Analíse",
           url: "/nova-analise",
         },
-        {
+        /*{
           title: "Analíses",
           url: "/historico-de-analises",
-        },
+        },*/
         {
           title: "Gerar Relátorio",
           url: "/gerar-relatorio",
-        },
-      ],
-    },
-    {
-      title: "Modelo",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Especificações",
-          url: "#",
-        },
-        {
-          title: "Matriz de confusão",
-          url: "#",
-        },
-        {
-          title: "Acurácia",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentação",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
         },
       ],
     },
@@ -103,10 +59,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const conectado = false;
   return (
     <Sidebar collapsible="icon" {...props} className="bg-sidebar">
-      <SidebarHeader>
-        {/*<TeamSwitcher teams={data.teams} />*/}
-        {conectado ? <NavUser user={data.user} /> : <LoginSideBar />}
-      </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">

@@ -12,18 +12,16 @@ import {
   YAxis
 } from "recharts";
 
-const data = [
-  { name: "Jan", racistas: 400, naoRacistas: 300 },
-  { name: "Fev", racistas: 300, naoRacistas: 400 },
-  { name: "Mar", racistas: 600, naoRacistas: 500 },
-  { name: "Abr", racistas: 800, naoRacistas: 650 },
-  { name: "Mai", racistas: 500, naoRacistas: 700 },
-  { name: "Jun", racistas: 900, naoRacistas: 800 },
-  { name: "Jul", racistas: 750, naoRacistas: 850 },
-  {name: "Ago", racistas: 650, naoRacistas:900}
-]
 
-export function LineChartComponent() {
+interface DadoGrafico {
+    name: string; // Mês abreviado (ex: "Jan")
+    racistas: number;
+    naoRacistas: number;
+}
+interface LineChartData {
+  data: DadoGrafico[];
+}
+export function LineChartComponent({data}: LineChartData) {
   const corRacistas = "oklch(0.60 0.28 25 / 0.7)";
   const corNaoRacistas = "oklch(0.78 0.25 27 / 0.7)";
   return (
